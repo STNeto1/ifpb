@@ -1,12 +1,12 @@
 #include <stdio.h>
-int main()
+
+int main(void)
 {
-  float f = 10.5;
-  float *pf = &f;
+  int idade;
 
-  *pf = 300;
+  scanf("%d", &idade);
 
-  printf("%f\n", *pf);
+  printf("%d", idade);
 
   return 0;
 }
