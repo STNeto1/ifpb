@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
+int sumMatrixLine(int line[], int size);
+
 int main()
 {
   int n = 0, m = 0;
   char str[50];
 
-  int idx = -1;
-  int pts = 10000;
+  int vencedorIdx;
+  int vencedorPts;
 
   scanf("%d %d", &n, &m);
 
@@ -23,20 +25,35 @@ int main()
 
   for (int i = 0; i < n; i++)
   {
-    int sum = 0;
-    for (int j = 0; j < m; j++)
+    int sumLine = sumMatrixLine(matriz[i], m);
+
+    if (i == 0)
     {
-      sum += matriz[i][j];
+      vencedorPts = sumLine;
+      vencedorIdx = i + 1;
+      continue;
     }
 
-    if (sum < pts)
+    if (vencedorPts > sumLine)
     {
-      pts = sum;
-      idx = i;
+      vencedorPts = sumLine;
+      vencedorIdx = i + 1;
     }
   }
 
-  printf("%d", idx + 1);
+  printf("%d\n", vencedorIdx);
 
   return 0;
+}
+
+int sumMatrixLine(int line[], int size)
+{
+  int sum = 0;
+
+  for (int i = 0; i < size; i++)
+  {
+    sum += line[i];
+  }
+
+  return sum;
 }
