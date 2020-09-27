@@ -15,11 +15,24 @@ void apagar();
 
 int main(void)
 {
+  inserir(10);
+  inserir(10);
+  inserir(20);
+  imprimir();
+  remover(10);
+  imprimir();
+
   return 0;
 }
 
 void inserir(int elemento)
 {
+  if (buscar(elemento) != -1)
+  {
+    printf("Não foi possível inserir %d. Elemento já se encontra na lista.\n", elemento);
+    return;
+  }
+
   if (pos < MAX)
     l[pos++] = elemento;
   else
@@ -45,9 +58,22 @@ void remover(int elemento)
   if (p == -1)
     return;
 
-  for (int i = p; i < pos - 1; i++)
-    l[i] = l[i + 1];
-  pos--;
+  int nPos = 0;
+  int nL[MAX];
+
+  for (int i = 0; i < pos; i++)
+  {
+    if (l[i] != elemento)
+    {
+      nL[nPos++] = l[i];
+    }
+  }
+
+  pos = nPos;
+  for (int i = 0; i < pos; i++)
+  {
+    l[i] = nL[i];
+  }
 }
 
 int obter(int indice)

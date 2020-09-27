@@ -5,6 +5,7 @@
 int l[MAX], pos = 0;
 
 void inserir(int elemento);
+void inserir_ini(int element);
 void remover(int elemento);
 int buscar(int elemento);
 
@@ -15,6 +16,12 @@ void apagar();
 
 int main(void)
 {
+
+  inserir(10);
+  inserir(20);
+  imprimir();
+  inserir_ini(30);
+  imprimir();
   return 0;
 }
 
@@ -22,6 +29,24 @@ void inserir(int elemento)
 {
   if (pos < MAX)
     l[pos++] = elemento;
+  else
+  {
+    printf("Não foi possível inserir %d. Lista cheia.\n", elemento);
+  }
+}
+
+void inserir_ini(int elemento)
+{
+  if (pos < MAX)
+  {
+    pos++;
+    l[pos] = 0;
+    for (int i = pos + 1; i > 0; i--)
+    {
+      l[i] = l[i - 1];
+    }
+    l[0] = elemento;
+  }
   else
   {
     printf("Não foi possível inserir %d. Lista cheia.\n", elemento);
